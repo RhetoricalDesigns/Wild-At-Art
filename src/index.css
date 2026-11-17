@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  /* Ozeum-inspired Museum & Contemporary Gallery Palette */
+  --color-background: #f7f6f3;
+  --color-surface: #ffffff;
+  --color-surface-muted: #efede8;
+  --color-foreground: #141414;
+  --color-muted: #5c5a56;
+  --color-border: #e3dfd7;
+  --color-border-strong: #b8b2a6;
+
+  /* Curatorial Obsidian Primary & Venetian Terracotta Accent */
+  --color-primary: #141414;
+  --color-primary-foreground: #ffffff;
+  --color-accent: #b5492b;
+  --color-danger: #a62b2b;
+
+  /* Dark Gallery Room & Screening Viewer Surfaces */
+  --color-viewer: #121212;
+  --color-viewer-surface: #1b1b1b;
+  --color-viewer-foreground: #f5f3ee;
+  --color-viewer-muted: #b0aca4;
+
+  /* Typography — Cormorant Garamond (Museum Serif) + Jost (Architectural Sans) */
+  --font-sans: "Jost", system-ui, -apple-system, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+
+  --text-display: clamp(2.4rem, 1.8rem + 2.4vw, 4.1rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.015em;
+  --text-display--font-weight: 500;
+
+  --text-title: clamp(1.75rem, 1.35rem + 1.25vw, 2.65rem);
+  --text-title--line-height: 1.12;
+  --text-title--letter-spacing: -0.01em;
+  --text-title--font-weight: 500;
+
+  --text-heading: clamp(1.2rem, 1.1rem + 0.35vw, 1.45rem);
+  --text-heading--line-height: 1.25;
+  --text-heading--font-weight: 500;
+
+  /* Crisp Rectilinear Museum Geometry */
+  --radius-card: 2px;
+  --radius-control: 2px;
+  --shadow-surface: 0 1px 2px rgba(20, 20, 20, 0.03);
+  --shadow-float: 0 18px 44px rgba(12, 12, 12, 0.22);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    scroll-behavior: smooth;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *:not(.animate-spin):not(.animate-pulse),
+  *:not(.animate-spin):not(.animate-pulse)::before,
+  *:not(.animate-spin):not(.animate-pulse)::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

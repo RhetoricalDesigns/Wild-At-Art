@@ -1,0 +1,8 @@
+{
+  "name": "Remix Wild at Art — Steve Jones Wildlife Paintings",
+  "description": "Interactive fine-art portfolio and Hermanus gallery catalogue for wildlife oil painter Steve Jones, featuring available works, sold archive, exhibitions, and collector inquiries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
