@@ -174,11 +174,11 @@ export function GalleryPage({
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 lg:col-span-7 lg:justify-end">
-            <div className="flex items-center gap-2">
+          <div className="grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-4 lg:col-span-7 lg:justify-end">
+            <div className="flex min-w-0 items-center justify-between gap-2 sm:justify-start">
               <label
                 htmlFor="gallery-medium-select"
-                className="text-xs font-medium uppercase tracking-[0.1em] text-muted"
+                className="shrink-0 text-xs font-medium uppercase tracking-[0.1em] text-muted"
               >
                 Medium
               </label>
@@ -186,7 +186,7 @@ export function GalleryPage({
                 id="gallery-medium-select"
                 value={selectedMedium}
                 onChange={(e) => setSelectedMedium(e.target.value as 'All' | ArtworkMedium)}
-                className="min-h-10 rounded-control border border-border-strong bg-surface px-3 text-sm text-foreground focus-visible:outline-2 focus-visible:outline-primary"
+                className="min-h-11 w-full max-w-[14rem] rounded-control border border-border-strong bg-surface px-3 text-sm text-foreground focus-visible:outline-2 focus-visible:outline-primary sm:w-auto"
               >
                 {MEDIUMS.map((m) => (
                   <option key={m} value={m}>
@@ -196,10 +196,10 @@ export function GalleryPage({
               </select>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 items-center justify-between gap-2 sm:justify-start">
               <label
                 htmlFor="gallery-sort-select"
-                className="text-xs font-medium uppercase tracking-[0.1em] text-muted"
+                className="shrink-0 text-xs font-medium uppercase tracking-[0.1em] text-muted"
               >
                 Order
               </label>
@@ -207,7 +207,7 @@ export function GalleryPage({
                 id="gallery-sort-select"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortKey)}
-                className="min-h-10 rounded-control border border-border-strong bg-surface px-3 text-sm text-foreground focus-visible:outline-2 focus-visible:outline-primary"
+                className="min-h-11 w-full max-w-[14rem] rounded-control border border-border-strong bg-surface px-3 text-sm text-foreground focus-visible:outline-2 focus-visible:outline-primary sm:w-auto"
               >
                 <option value="curated">Curated hang</option>
                 <option value="price-desc">Price: high to low</option>

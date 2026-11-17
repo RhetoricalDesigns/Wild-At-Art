@@ -27,7 +27,7 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-surface">
-      <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-8 px-4 py-4 sm:px-8">
+      <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-3 px-4 py-3 sm:gap-8 sm:px-8 sm:py-4">
         {/* Zone 1: Single-element Brand Wordmark */}
         <a
           href="#home"
@@ -35,7 +35,7 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
             e.preventDefault();
             handleSelect('home');
           }}
-          className="shrink-0 whitespace-nowrap font-display text-xl font-medium tracking-tight text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-[1.65rem]"
+          className="min-w-0 shrink-0 whitespace-nowrap font-display text-[1.2rem] font-medium tracking-tight text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-[1.65rem]"
         >
           Wild at Art · Steve Jones
         </a>
@@ -93,7 +93,7 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
         <nav
           id="mobile-gallery-nav"
           aria-label="Mobile navigation"
-          className="border-t border-border bg-surface px-4 py-4 md:hidden"
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-border bg-surface px-4 py-4 md:hidden"
         >
           <div className="flex flex-col divide-y divide-border/70">
             {NAV_LINKS.map((item) => {

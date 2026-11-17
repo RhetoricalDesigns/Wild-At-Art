@@ -41,7 +41,7 @@ export const Button = ({
 }: ComponentProps<'button'> & { tone?: keyof typeof buttonTones }) => (
   <button
     type={type}
-    className={`[:where(&)]:inline-flex [:where(&)]:min-h-11 [:where(&)]:items-center [:where(&)]:justify-center [:where(&)]:gap-2 whitespace-nowrap shrink-0 [:where(&)]:rounded-control [:where(&)]:px-5 [:where(&)]:text-xs [:where(&)]:font-medium [:where(&)]:tracking-[0.1em] [:where(&)]:uppercase transition-colors duration-150 ease-out active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:pointer-events-none disabled:opacity-50 ${buttonTones[tone]} ${className}`}
+    className={`[:where(&)]:inline-flex [:where(&)]:min-h-11 [:where(&)]:items-center [:where(&)]:justify-center [:where(&)]:gap-2 whitespace-nowrap shrink-0 [:where(&)]:rounded-control [:where(&)]:px-4 sm:[:where(&)]:px-5 [:where(&)]:text-xs [:where(&)]:font-medium [:where(&)]:tracking-[0.09em] [:where(&)]:uppercase transition-colors duration-150 ease-out active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:pointer-events-none disabled:opacity-50 ${buttonTones[tone]} ${className}`}
     {...props}
   />
 );
@@ -55,7 +55,7 @@ export const FilterChip = ({
   <button
     type="button"
     aria-pressed={active}
-    className={`inline-flex min-h-9 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-control px-3.5 text-xs font-medium tracking-[0.06em] transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+    className={`inline-flex min-h-10 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-control px-3.5 text-xs font-medium tracking-[0.06em] transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
       active
         ? 'border border-primary bg-primary text-primary-foreground'
         : 'border border-border bg-surface text-foreground hover:border-border-strong'

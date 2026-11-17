@@ -157,10 +157,10 @@ export function EventsPage({ exhibitions, onInquireEvent }: EventsPageProps) {
           const monthLabel = MONTH_SHORT[ev.start[1] - 1] ?? 'JAN';
 
           return (
-            <div key={ev.id} className="p-6 sm:p-8">
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-center">
+            <div key={ev.id} className="p-5 sm:p-8">
+              <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:items-center lg:gap-6">
                 {/* Large Architectural Museum Date Block */}
-                <div className="flex min-w-0 items-baseline gap-4 lg:col-span-3 lg:block lg:space-y-1.5">
+                <div className="flex min-w-0 flex-col space-y-1.5 lg:col-span-3">
                   <div className="flex items-baseline gap-2.5">
                     <span className="font-display text-4xl font-medium text-foreground tabular-nums sm:text-5xl">
                       {dayStr}

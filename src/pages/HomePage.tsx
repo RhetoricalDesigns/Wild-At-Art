@@ -111,7 +111,7 @@ export function HomePage({
           }
         }}
       >
-        <div className="relative h-[580px] w-full sm:h-[660px] lg:h-[78dvh] lg:max-h-[840px]">
+        <div className="relative flex min-h-[540px] w-full flex-col justify-end sm:min-h-[640px] lg:block lg:h-[78dvh] lg:max-h-[840px]">
           {activeHero ? (
             <AnimatePresence mode="sync" initial={false}>
               <motion.div
@@ -136,14 +136,18 @@ export function HomePage({
             </AnimatePresence>
           ) : null}
 
-          {/* Measured directional gradient scrim */}
+          {/* Measured directional gradient scrim for crisp museum-grade legibility */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-viewer/95 via-viewer/50 to-viewer/20 lg:bg-gradient-to-r lg:from-viewer/88 lg:via-viewer/42 lg:to-transparent"
+            className="pointer-events-none absolute inset-0 bg-black/25"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-viewer/95 via-viewer/65 to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/68 to-black/20 lg:bg-gradient-to-r lg:from-black/90 lg:via-black/58 lg:to-black/20"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black/95 via-black/75 to-transparent"
           />
 
           {/* Side Arrow Controls */}
@@ -153,7 +157,7 @@ export function HomePage({
                 type="button"
                 onClick={goPrevHero}
                 aria-label="Previous featured painting"
-                className="absolute top-1/2 left-5 z-20 hidden min-h-12 min-w-12 -translate-y-1/2 items-center justify-center rounded-control border border-viewer-muted/35 bg-viewer/70 text-viewer-foreground transition-colors duration-150 hover:border-viewer-foreground hover:bg-viewer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-viewer-foreground md:inline-flex"
+                className="absolute top-1/2 left-5 z-20 hidden min-h-12 min-w-12 -translate-y-1/2 items-center justify-center rounded-control border border-white/35 bg-black/75 text-white transition-colors duration-150 hover:border-white hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:inline-flex"
               >
                 <ChevronLeft className="size-5" />
               </button>
@@ -161,7 +165,7 @@ export function HomePage({
                 type="button"
                 onClick={goNextHero}
                 aria-label="Next featured painting"
-                className="absolute top-1/2 right-5 z-20 hidden min-h-12 min-w-12 -translate-y-1/2 items-center justify-center rounded-control border border-viewer-muted/35 bg-viewer/70 text-viewer-foreground transition-colors duration-150 hover:border-viewer-foreground hover:bg-viewer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-viewer-foreground md:inline-flex"
+                className="absolute top-1/2 right-5 z-20 hidden min-h-12 min-w-12 -translate-y-1/2 items-center justify-center rounded-control border border-white/35 bg-black/75 text-white transition-colors duration-150 hover:border-white hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:inline-flex"
               >
                 <ChevronRight className="size-5" />
               </button>
@@ -169,18 +173,18 @@ export function HomePage({
           ) : null}
 
           {/* Foreground Museum Hero Content */}
-          <div className="relative z-10 mx-auto flex h-full max-w-[90rem] flex-col justify-end px-4 pb-8 sm:px-8 sm:pb-12">
-            <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
+          <div className="relative z-10 mx-auto flex w-full max-w-[90rem] flex-col justify-end px-4 pt-24 pb-8 sm:px-8 sm:pt-28 sm:pb-12 lg:h-full">
+            <div className="grid grid-cols-1 items-end gap-7 sm:gap-8 lg:grid-cols-12">
               <div className="min-w-0 space-y-5 lg:col-span-7">
-                <p className="text-xs font-medium uppercase tracking-[0.16em] text-viewer-muted">
+                <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#ece8df]">
                   Harbour Road · Hermanus · Steve Jones
                 </p>
 
-                <h1 className="font-display text-display text-viewer-foreground">
+                <h1 className="font-display text-display text-white">
                   Wildlife oil paintings shaped by dust, shadow, and linen
                 </h1>
 
-                <p className="max-w-[38em] text-base leading-relaxed text-viewer-muted">
+                <p className="max-w-[38em] text-base leading-relaxed text-[#f5f3ee]">
                   Monumental palette-knife and hog-bristle oils of Southern African megafauna,
                   painted from field sketches by self-taught artist Steve Jones.
                 </p>
@@ -203,13 +207,13 @@ export function HomePage({
               {activeHero ? (
                 <div className="min-w-0 space-y-4 lg:col-span-5 lg:text-right">
                   <div className="space-y-1">
-                    <p className="text-xs uppercase tracking-[0.14em] text-viewer-muted tabular-nums">
+                    <p className="text-xs uppercase tracking-[0.14em] text-[#e6e1d6] tabular-nums">
                       Featured plate 0{heroIndex + 1} / 0{heroWorks.length}
                     </p>
-                    <p className="font-display text-2xl font-medium text-viewer-foreground sm:text-3xl">
+                    <p className="font-display text-2xl font-medium text-white sm:text-3xl">
                       {activeHero.title}
                     </p>
-                    <p className="text-sm text-viewer-muted tabular-nums">
+                    <p className="text-sm text-[#f5f3ee] tabular-nums">
                       {activeHero.medium} ·{' '}
                       {formatDimensions(activeHero.widthCm, activeHero.heightCm, unit)}
                       {activeHero.priceCentsZar !== null
@@ -222,17 +226,17 @@ export function HomePage({
                     <button
                       type="button"
                       onClick={() => onQuickView(activeHero, heroWorks)}
-                      className="text-xs font-medium uppercase tracking-[0.12em] text-viewer-foreground underline decoration-viewer-muted underline-offset-4 hover:decoration-viewer-foreground"
+                      className="text-xs font-medium uppercase tracking-[0.12em] text-white underline decoration-white/60 underline-offset-4 hover:decoration-white"
                     >
                       Inspect canvas
                     </button>
-                    <span className="text-viewer-muted" aria-hidden="true">
+                    <span className="text-white/65" aria-hidden="true">
                       ·
                     </span>
                     <button
                       type="button"
                       onClick={() => onInquire(activeHero)}
-                      className="text-xs font-medium uppercase tracking-[0.12em] text-viewer-foreground underline decoration-viewer-muted underline-offset-4 hover:decoration-viewer-foreground"
+                      className="text-xs font-medium uppercase tracking-[0.12em] text-white underline decoration-white/60 underline-offset-4 hover:decoration-white"
                     >
                       Inquire
                     </button>
@@ -245,7 +249,7 @@ export function HomePage({
                         type="button"
                         onClick={goPrevHero}
                         aria-label="Previous slide"
-                        className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-control border border-viewer-muted/40 bg-viewer-surface text-viewer-foreground"
+                        className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-control border border-white/35 bg-black/70 text-white"
                       >
                         <ChevronLeft className="size-4" />
                       </button>
@@ -253,7 +257,7 @@ export function HomePage({
                         type="button"
                         onClick={goNextHero}
                         aria-label="Next slide"
-                        className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-control border border-viewer-muted/40 bg-viewer-surface text-viewer-foreground"
+                        className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-control border border-white/35 bg-black/70 text-white"
                       >
                         <ChevronRight className="size-4" />
                       </button>
@@ -263,7 +267,7 @@ export function HomePage({
                       type="button"
                       onClick={() => setPaused((p) => !p)}
                       aria-label={paused ? 'Resume slider rotation' : 'Pause slider rotation'}
-                      className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-control border border-viewer-muted/40 bg-viewer-surface/80 text-viewer-foreground hover:border-viewer-foreground"
+                      className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-control border border-white/35 bg-black/70 text-white hover:border-white"
                     >
                       {paused ? <Play className="size-3.5" /> : <Pause className="size-3.5" />}
                     </button>
@@ -281,14 +285,16 @@ export function HomePage({
                             type="button"
                             role="tab"
                             aria-selected={selected}
+                            aria-label={work.title}
                             onClick={() => setHeroIndex(idx)}
-                            className={`min-h-9 rounded-control px-2.5 text-xs transition-colors duration-150 ${
+                            className={`min-h-10 min-w-10 rounded-control px-2.5 text-xs transition-colors duration-150 ${
                               selected
-                                ? 'border border-viewer-foreground bg-viewer-foreground font-medium text-viewer'
-                                : 'border border-viewer-muted/35 bg-viewer-surface/75 text-viewer-foreground hover:border-viewer-foreground'
+                                ? 'border border-white bg-white font-medium text-viewer'
+                                : 'border border-white/35 bg-black/65 text-white hover:border-white'
                             }`}
                           >
-                            {work.title}
+                            <span className="tabular-nums sm:hidden">0{idx + 1}</span>
+                            <span className="hidden sm:inline">{work.title}</span>
                           </button>
                         );
                       })}
@@ -304,7 +310,7 @@ export function HomePage({
       {/* Operational Gallery Utility Ribbon (Ozeum Institutional Pattern) */}
       <section aria-label="Gallery visitor information" className="border-b border-border bg-surface">
         <div className="mx-auto grid max-w-[90rem] grid-cols-1 divide-y divide-border px-4 sm:grid-cols-2 sm:divide-y-0 sm:px-8 lg:grid-cols-4 lg:divide-x">
-          <div className="py-4 sm:pr-6">
+          <div className="py-3.5 sm:border-b sm:border-border sm:pr-6 sm:py-4 lg:border-b-0">
             <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
               Opening hours
             </p>
@@ -312,7 +318,7 @@ export function HomePage({
               Tue – Sun · 09:30 – 17:00
             </p>
           </div>
-          <div className="py-4 sm:px-6">
+          <div className="py-3.5 sm:border-b sm:border-l sm:border-border sm:pl-6 sm:py-4 lg:border-b-0 lg:border-l-0 lg:px-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
               Location
             </p>
@@ -320,7 +326,7 @@ export function HomePage({
               {ARTIST_CONTACT.streetAddress}
             </p>
           </div>
-          <div className="py-4 sm:pr-6 lg:px-6">
+          <div className="py-3.5 sm:pr-6 sm:py-4 lg:px-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
               First Fridays Artwalk
             </p>
@@ -328,7 +334,7 @@ export function HomePage({
               Open monthly until 20:00
             </p>
           </div>
-          <div className="flex items-center justify-between gap-4 py-4 lg:pl-6">
+          <div className="flex items-center justify-between gap-4 py-3.5 sm:border-l sm:border-border sm:pl-6 sm:py-4 lg:border-l-0 lg:pl-6">
             <div>
               <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
                 Admission
@@ -350,7 +356,7 @@ export function HomePage({
       {nextExhibition ? (
         <section
           aria-labelledby="exhibitions-home-heading"
-          className="border-b border-border bg-background py-16 sm:py-24"
+          className="border-b border-border bg-background py-12 sm:py-24"
         >
           <div className="mx-auto max-w-[90rem] px-4 sm:px-8">
             <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
@@ -459,7 +465,7 @@ export function HomePage({
       {/* 3. Current Collection in the Gallery (Museum Catalog 3-Column Grid) */}
       <section
         aria-labelledby="curated-preview-heading"
-        className="bg-surface py-16 sm:py-24"
+        className="bg-surface py-12 sm:py-24"
       >
         <div className="mx-auto max-w-[90rem] px-4 sm:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
@@ -549,7 +555,7 @@ export function HomePage({
       {/* 4. Dark Obsidian Studio & Provenance Room (Ozeum Signature Dark Gallery Band) */}
       <section
         aria-labelledby="about-artist-home-heading"
-        className="bg-viewer py-16 text-viewer-foreground sm:py-24"
+        className="bg-viewer py-12 text-viewer-foreground sm:py-24"
       >
         <div className="mx-auto max-w-[90rem] px-4 sm:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start">
@@ -648,22 +654,22 @@ export function HomePage({
               </div>
 
               <div className="grid grid-cols-3 divide-x divide-viewer-muted/25 border border-viewer-muted/25 bg-viewer-surface text-center">
-                <div className="px-3 py-4">
-                  <p className="font-display text-2xl text-viewer-foreground tabular-nums">1962</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.1em] text-viewer-muted">
-                    Born Coventry
+                <div className="px-2 py-3.5 sm:px-3 sm:py-4">
+                  <p className="font-display text-xl text-viewer-foreground tabular-nums sm:text-2xl">1962</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.08em] text-viewer-muted sm:text-[11px] sm:tracking-[0.1em]">
+                    Coventry
                   </p>
                 </div>
-                <div className="px-3 py-4">
-                  <p className="font-display text-2xl text-viewer-foreground tabular-nums">1996</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.1em] text-viewer-muted">
-                    Moved to SA
+                <div className="px-2 py-3.5 sm:px-3 sm:py-4">
+                  <p className="font-display text-xl text-viewer-foreground tabular-nums sm:text-2xl">1996</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.08em] text-viewer-muted sm:text-[11px] sm:tracking-[0.1em]">
+                    South Africa
                   </p>
                 </div>
-                <div className="px-3 py-4">
-                  <p className="font-display text-2xl text-viewer-foreground tabular-nums">2015</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.1em] text-viewer-muted">
-                    Hermanus Gallery
+                <div className="px-2 py-3.5 sm:px-3 sm:py-4">
+                  <p className="font-display text-xl text-viewer-foreground tabular-nums sm:text-2xl">2015</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.08em] text-viewer-muted sm:text-[11px] sm:tracking-[0.1em]">
+                    Hermanus
                   </p>
                 </div>
               </div>
@@ -673,7 +679,7 @@ export function HomePage({
       </section>
 
       {/* 5. From the Sold Archive & Collector Commissions */}
-      <section aria-labelledby="archive-preview-heading" className="bg-background py-16 sm:py-24">
+      <section aria-labelledby="archive-preview-heading" className="bg-background py-12 sm:py-24">
         <div className="mx-auto max-w-[90rem] px-4 sm:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
             <div className="space-y-2">

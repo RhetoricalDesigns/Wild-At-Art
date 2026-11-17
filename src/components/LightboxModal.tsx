@@ -85,7 +85,7 @@ export function LightboxModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="lightbox-artwork-title"
-      className="fixed inset-0 z-50 flex flex-col justify-between bg-viewer text-viewer-foreground"
+      className="fixed inset-0 z-50 flex flex-col justify-between overflow-y-auto bg-viewer text-viewer-foreground"
       onPointerDown={(e) => {
         pointerStartX.current = e.clientX;
       }}
@@ -100,17 +100,19 @@ export function LightboxModal({
       }}
     >
       {/* Top viewer bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-viewer-muted/20 px-4 py-3 sm:px-8">
-        <div className="flex min-w-0 items-center gap-3 text-xs text-viewer-muted">
+      <div className="shrink-0 flex flex-wrap items-center justify-between gap-3 border-b border-viewer-muted/20 px-4 py-3 sm:px-8">
+        <div className="flex min-w-0 items-center gap-2.5 text-xs text-viewer-muted">
           <span className="tabular-nums">
             {activeIndex + 1} / {works.length}
           </span>
           <span aria-hidden="true">·</span>
-          <span>Steve Jones · Wild at Art</span>
+          <span className="truncate">Steve Jones · Wild at Art</span>
           <span className="hidden sm:inline" aria-hidden="true">
             ·
           </span>
-          <span className="hidden uppercase tracking-[0.06em] sm:inline">[ESC] close · [←] [→] browse</span>
+          <span className="hidden uppercase tracking-[0.06em] sm:inline">
+            [ESC] close · [←] [→] browse
+          </span>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -135,8 +137,8 @@ export function LightboxModal({
         </div>
       </div>
 
-      {/* Main uncropped canvas stage */}
-      <div className="relative flex min-h-0 flex-1 items-center justify-center px-4 py-4 sm:px-16 sm:py-6">
+      {/* Main uncropped canvas stage with guaranteed breathing room above caption */}
+      <div className="relative flex min-h-[240px] flex-1 items-center justify-center overflow-hidden px-5 py-7 sm:px-16 sm:py-10">
         {works.length > 1 ? (
           <button
             type="button"
@@ -152,15 +154,18 @@ export function LightboxModal({
           /* Calibrated 280 cm x 210 cm gallery wall scale benchmark */
           <div
             aria-label={`Wall scale diagram showing ${artwork.title} (${artwork.widthCm} by ${artwork.heightCm} cm) hung along a 280 cm gallery wall`}
-            style={{ aspectRatio: '280 / 210' }}
-            className="relative flex max-h-[62dvh] w-full max-w-3xl items-center justify-center border border-viewer-muted/30 bg-surface text-foreground"
+            style={{
+              width: 'min(100%, 48rem, 66dvh)',
+              aspectRatio: '280 / 210',
+            }}
+            className="relative flex items-center justify-center border border-viewer-muted/30 bg-surface text-foreground"
           >
             {/* 155 cm gallery eye-level datum */}
             <div
               style={{ bottom: '62%' }}
               className="pointer-events-none absolute inset-x-0 border-t border-dashed border-border-strong/60"
             >
-              <span className="ml-3 inline-block -translate-y-2.5 bg-surface px-1.5 text-[11px] text-muted tabular-nums">
+              <span className="ml-3 inline-block -translate-y-2.5 bg-surface px-1.5 text-[10px] text-muted tabular-nums sm:text-[11px]">
                 155 cm gallery eye line
               </span>
             </div>
@@ -195,7 +200,7 @@ export function LightboxModal({
               style={{ width: '50%', height: '22%' }}
               className="pointer-events-none absolute bottom-0 border-x border-t border-border-strong/60 bg-surface-muted/80"
             >
-              <span className="block pt-1.5 text-center text-[11px] text-muted tabular-nums">
+              <span className="block pt-1 text-center text-[10px] text-muted tabular-nums sm:pt-1.5 sm:text-[11px]">
                 140 cm gallery bench reference
               </span>
             </div>
@@ -207,7 +212,7 @@ export function LightboxModal({
             width={artwork.imageWidth ?? 1200}
             height={artwork.imageHeight ?? 900}
             referrerPolicy="no-referrer"
-            className="max-h-[66dvh] w-auto max-w-full object-contain shadow-float"
+            className="max-h-full max-w-full h-auto w-auto object-contain shadow-float"
           />
         ) : (
           <CanvasProportionPlate
@@ -233,21 +238,25 @@ export function LightboxModal({
       </div>
 
       {/* Bottom quiet archival caption & inquiry bar */}
-      <div className="border-t border-viewer-muted/20 bg-viewer-surface px-4 py-4 sm:px-8">
-        <div className="mx-auto flex max-w-[90rem] flex-col justify-between gap-4 lg:flex-row lg:items-center">
-          <div className="min-w-0 space-y-1">
-            <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-              <h2 id="lightbox-artwork-title" className="font-display text-xl text-viewer-foreground sm:text-2xl">
+      <div className="shrink-0 border-t border-viewer-muted/25 bg-viewer-surface px-4 py-5 sm:px-8 sm:py-6">
+        <div className="mx-auto flex max-w-[90rem] flex-col justify-between gap-5 lg:flex-row lg:items-center lg:gap-8">
+          <div className="min-w-0 space-y-2">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h2
+                id="lightbox-artwork-title"
+                className="font-display text-2xl font-medium text-viewer-foreground sm:text-3xl"
+              >
                 {artwork.title}
               </h2>
               <span className="text-sm text-viewer-muted tabular-nums">
-                {artwork.year} · {artwork.medium} · {formatDimensions(artwork.widthCm, artwork.heightCm, unit)}
+                {artwork.year} · {artwork.medium} ·{' '}
+                {formatDimensions(artwork.widthCm, artwork.heightCm, unit)}
               </span>
             </div>
-            <p className="max-w-3xl text-sm text-viewer-muted">{artwork.story}</p>
+            <p className="max-w-3xl text-sm leading-relaxed text-viewer-muted">{artwork.story}</p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 sm:justify-end">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:justify-end sm:gap-4">
             {/* Mobile prev/next controls */}
             {works.length > 1 ? (
               <div className="flex items-center gap-2 sm:hidden">
@@ -262,7 +271,7 @@ export function LightboxModal({
               </div>
             ) : null}
 
-            <div className="text-right text-sm tabular-nums">
+            <div className="text-left text-sm tabular-nums sm:text-right">
               {artwork.status === 'available' && artwork.priceCentsZar !== null ? (
                 <span className="font-medium text-viewer-foreground">
                   {formatZarMinorUnits(artwork.priceCentsZar)} · Available
@@ -276,6 +285,7 @@ export function LightboxModal({
 
             <Button
               tone="accent"
+              className="w-full sm:w-auto"
               onClick={() => onInquire(artwork)}
             >
               {artwork.status === 'available'
