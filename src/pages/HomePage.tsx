@@ -678,24 +678,23 @@ export function HomePage({
         </div>
       </section>
 
-      {/* 5. From the Sold Archive & Collector Commissions */}
+      {/* 5. Additional Available Works in the Gallery */}
       <section aria-labelledby="archive-preview-heading" className="bg-background py-12 sm:py-24">
         <div className="mx-auto max-w-[90rem] px-4 sm:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
             <div className="space-y-2">
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-accent">
-                04 · Private Holdings & Archive
+                04 · Gallery Highlights
               </p>
               <h2 id="archive-preview-heading" className="font-display text-title text-foreground">
-                Landmark canvases in private collections
+                More statement oils from the collection
               </h2>
               <p className="max-w-[58ch] text-sm text-muted">
-                Completed oils held internationally that document Steve Jones’s major series and
-                inform bespoke studio commissions.
+                Original available oil paintings currently exhibited on Harbour Road, Hermanus.
               </p>
             </div>
-            <Button tone="quiet" onClick={() => onNavigate('sold')}>
-              <span>Explore sold archive</span>
+            <Button tone="quiet" onClick={() => onNavigate('gallery')}>
+              <span>View full collection</span>
               <ArrowRight className="size-4" />
             </Button>
           </div>
@@ -706,29 +705,35 @@ export function HomePage({
                 <button
                   type="button"
                   onClick={() => onQuickView(work, soldPreviewWorks)}
-                  aria-label={`Inspect archived work ${work.title}`}
+                  aria-label={`Inspect ${work.title}`}
                   className="block w-full overflow-hidden border border-border bg-surface p-2.5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                   <div className="overflow-hidden">
                     <ArtworkImage
                       src={work.image}
-                      alt={`${work.title} (${work.year}) — Archived oil painting`}
+                      alt={`${work.title} (${work.year}) — Oil painting`}
                       title={work.title}
                       width={work.imageWidth}
                       height={work.imageHeight}
-                      archivalMuted
                       zoomOnHover
                     />
                   </div>
                 </button>
                 <div className="space-y-1">
-                  <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted tabular-nums">
-                    Sold · {work.year}
-                    {work.provenanceNote ? ` · ${work.provenanceNote}` : ''}
-                  </p>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted tabular-nums">
+                      {work.theme} · {work.year}
+                    </p>
+                    {work.priceCentsZar !== null ? (
+                      <span className="text-sm font-medium text-foreground tabular-nums">
+                        {formatZarMinorUnits(work.priceCentsZar)}
+                      </span>
+                    ) : null}
+                  </div>
                   <h3 className="font-display text-2xl font-medium text-foreground">{work.title}</h3>
                   <p className="text-sm text-muted tabular-nums">
-                    {work.medium} · {formatDimensions(work.widthCm, work.heightCm, unit)}
+                    {work.medium} · {formatDimensions(work.widthCm, work.heightCm, unit)} ·{' '}
+                    <span className="text-accent">Available</span>
                   </p>
                 </div>
               </article>

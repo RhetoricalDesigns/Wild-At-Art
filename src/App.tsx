@@ -156,7 +156,7 @@ function PortfolioShell() {
                 <HomePage
                   heroWorks={heroWorks}
                   previewWorks={previewWorks}
-                  soldPreviewWorks={soldWorks.slice(0, 3)}
+                  soldPreviewWorks={availableWorks.slice(3, 6)}
                   exhibitions={EXHIBITIONS}
                   nextExhibition={nextExhibition}
                   unit={unit}
